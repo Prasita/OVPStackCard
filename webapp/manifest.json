@@ -1,0 +1,115 @@
+{
+	"_version": "1.7.0",
+	"start_url": "start.html",
+	"sap.app": {
+		"id": "${project.artifactId}",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "${project.version}"
+		},
+		"title": "{{app_title}}",
+		"description": "{{app_description}}",
+		"ach": "ach",
+		"resources": "resources.json",
+		"dataSources": {
+			"GWSAMPLE_BASIC": {
+				"uri": "/here/goes/your/serviceurl/",
+				"type": "OData",
+				"settings": {
+					"annotations": [
+						"localAnnotations_1"
+					],
+					"localUri": "localService/GWSAMPLE_BASIC/metadata.xml"
+				}
+			},
+			"localAnnotations_1": {
+				"uri": "annotations/localAnnotations_1.xml",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "annotations/localAnnotations_1.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "OVP.cardtemplate",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "${sap.ui5.dist.version}",
+			"libs": {
+				"sap.ovp": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"@i18n": {
+				"preload": true,
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"GWSAMPLE_BASIC": {
+				"dataSource": "GWSAMPLE_BASIC",
+				"settings": {
+					"defaultCountMode": "Inline"
+				}
+			}
+		},
+		"extends": {
+			"extensions": {}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "def"
+	},
+	"sap.fiori": {
+		"registrationIds": [
+			"abc"
+		],
+		"archeType": "analytical"
+	},
+	"sap.ovp": {
+		"globalFilterModel": "GWSAMPLE_BASIC",
+		"globalFilterEntityType": "GlobalFilters",
+		"containerLayout": "resizable",
+		"enableLiveFilter": true,
+		"considerAnalyticalParameters": false,
+		"cards": {
+			"card001": {
+				"model": "GWSAMPLE_BASIC",
+				"template": "sap.ovp.cards.stack",
+				"settings": {
+					"itemText": "{{card001_itemText}}",
+					"title": "{{card001_title}}",
+					"subTitle": "{{card001_subtitle}}",
+					"entitySet": "PurchaseOrderLineItemSet",
+					"annotationPath": "com.sap.vocabularies.UI.v1.FieldGroup#Note/Data,com.sap.vocabularies.UI.v1.FieldGroup#Note1/Data",
+					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification,com.sap.vocabularies.UI.v1.Identification#Awaiting_Approval"
+				}
+			}
+		}
+	}
+}

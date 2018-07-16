@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/IWBEP/GWSAMPLE_BASIC">
+		<edmx:Include Namespace="GWSAMPLE_BASIC"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="zanno4sample_anno_mdl.v1">
+			<Annotations Target="GWSAMPLE_BASIC.GlobalFilters">
+				<Annotation Term="com.sap.vocabularies.UI.v1.TextArrangement" EnumMember="com.sap.vocabularies.UI.v1.TextArrangementType/TextLast"/>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<Record>
+							<PropertyPath>SupplierName</PropertyPath>
+						</Record>
+						<Record>
+							<PropertyPath>Land1</PropertyPath>
+						</Record>
+						<Record>
+							<PropertyPath>MaterialName</PropertyPath>
+						</Record>
+						<Record>
+							<PropertyPath>MaterialGroup</PropertyPath>
+						</Record>
+						<Record>
+							<PropertyPath>PurchasingCategory</PropertyPath>
+						</Record>
+						<Record>
+							<PropertyPath>PurchasingGroup</PropertyPath>
+						</Record>
+						<Record>
+							<PropertyPath>PurchasingOrganization</PropertyPath>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="GWSAMPLE_BASIC.GlobalFilters/Land1">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Country Code"/>
+						<PropertyValue Property="CollectionPath" String="VH_CountrySet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Land1"/>
+									<PropertyValue Property="ValueListProperty" String="Land1"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Natio"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="GWSAMPLE_BASIC.VH_Country/Land1">
+				<Annotation Term="com.sap.vocabularies.Common.v1.Text" Path="Natio">
+					<Annotation Term="com.sap.vocabularies.UI.v1.TextArrangement" EnumMember="com.sap.vocabularies.UI.v1.TextArrangementType/TextFirst"/>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="GWSAMPLE_BASIC.PurchaseOrderLineItem">
+				<Annotation Term="com.sap.vocabularies.UI.v1.HeaderInfo">
+					<Record Type="com.sap.vocabularies.UI.v1.HeaderInfoType">
+						<PropertyValue Property="TypeName" String="Purchase Order"/>
+						<PropertyValue Property="TypeNamePlural" String="Purchase Order Items"/>
+						<PropertyValue Property="Title">
+							<Record Type="com.sap.vocabularies.UI.v1.DataField">
+								<PropertyValue Property="Label" String="Purchase Order ID"/>
+								<PropertyValue Property="Value" Path="ItemPosition"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="com.sap.vocabularies.UI.v1.DataField">
+								<PropertyValue Property="Label" String="Product ID"/>
+								<PropertyValue Property="Value" Path="ProductName"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="ImageUrl" String="sap-icon://order-status"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="com.sap.vocabularies.UI.v1.Identification">
+					<Collection>
+						<Record Type="com.sap.vocabularies.UI.v1.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="Action"/>
+							<PropertyValue Property="Action" String="toappnavsample"/>
+							<PropertyValue Property="Label" String="Purchase Order List"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="com.sap.vocabularies.UI.v1.Identification" Qualifier="Awaiting_Approval">
+					<Collection>
+						<Record Type="com.sap.vocabularies.UI.v1.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="Action"/>
+							<PropertyValue Property="Action" String="toappnavsample"/>
+							<PropertyValue Property="Label" String="Purchase Order List"/>
+							<Annotation Term="com.sap.vocabularies.UI.v1.Importance" EnumMember="com.sap.vocabularies.UI.v1.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="com.sap.vocabularies.UI.v1.DataFieldForAction">
+							<Annotation Term="com.sap.vocabularies.UI.v1.Importance" EnumMember="com.sap.vocabularies.UI.v1.ImportanceType/Medium"/>
+							<PropertyValue Property="Label" String="Approve"/>
+							<PropertyValue Property="Action" String="GWSAMPLE_BASIC.GWSAMPLE_BASIC_Entities/PurchaseOrder_Confirm"/>
+						</Record>
+						<Record Type="com.sap.vocabularies.UI.v1.DataFieldForAction">
+							<Annotation Term="com.sap.vocabularies.UI.v1.Importance" EnumMember="com.sap.vocabularies.UI.v1.ImportanceType/Medium"/>
+							<PropertyValue Property="Label" String="Reject"/>
+							<PropertyValue Property="Action" String="GWSAMPLE_BASIC.GWSAMPLE_BASIC_Entities/PurchaseOrder_Cancel"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			
+<Annotation Term="com.sap.vocabularies.UI.v1.FieldGroup" Qualifier="Note">
+	<Record Type="com.sap.vocabularies.UI.v1.FieldGroupType">
+		<PropertyValue Property="Data">
+			<Collection>
+				<Record Type="com.sap.vocabularies.UI.v1.DataField">
+					<PropertyValue Property="Label" String="Gross Amount (Tax Amount)"/>
+					<PropertyValue Property="Value" Path="GrossAmount"/>
+				</Record>
+				<Record Type="com.sap.vocabularies.UI.v1.DataField">
+					<PropertyValue Property="Label" String="Number Of Items (Unit)"/>
+					<PropertyValue Property="Value" Path="Quantity"/>
+				</Record>
+			</Collection>
+		</PropertyValue>
+	</Record>
+</Annotation>
+<Annotation Term="com.sap.vocabularies.UI.v1.FieldGroup" Qualifier="Note1">
+	<Record Type="com.sap.vocabularies.UI.v1.FieldGroupType">
+		<PropertyValue Property="Data">
+			<Collection>
+				<Record Type="com.sap.vocabularies.UI.v1.DataField">
+					<PropertyValue Property="Label" String="Ordered By"/>
+					<PropertyValue Property="Value" Path="Name"/>
+					<Annotation EnumMember="com.sap.vocabularies.UI.v1.ImportanceType/Medium" Term="com.sap.vocabularies.UI.v1.Importance"/>
+				</Record>
+				<Record Type="com.sap.vocabularies.UI.v1.DataField">
+					<PropertyValue Property="Label" String="Ordered On"/>
+					<PropertyValue Property="Value" Path="DeliveryDate"/>
+					<Annotation EnumMember="com.sap.vocabularies.UI.v1.ImportanceType/Medium" Term="com.sap.vocabularies.UI.v1.Importance"/>
+				</Record>
+			</Collection>
+		</PropertyValue>
+	</Record>
+</Annotation>
+<Annotation Term="com.sap.vocabularies.UI.v1.Facets">
+	<Collection>
+		<Record Type="com.sap.vocabularies.UI.v1.ReferenceFacet">
+			<Annotation Term="com.sap.vocabularies.UI.v1.IsSummary"/>
+			<PropertyValue Property="Label" String="Note"/>
+			<PropertyValue Property="Target" AnnotationPath="@com.sap.vocabularies.UI.v1.FieldGroup#Note"/>
+		</Record>
+		<Record Type="com.sap.vocabularies.UI.v1.ReferenceFacet">
+			<Annotation Term="com.sap.vocabularies.UI.v1.IsSummary"/>
+			<PropertyValue Property="Label" String="Note1"/>
+			<PropertyValue Property="Target" AnnotationPath="@com.sap.vocabularies.UI.v1.FieldGroup#Note1"/>
+		</Record>
+	</Collection>
+</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
